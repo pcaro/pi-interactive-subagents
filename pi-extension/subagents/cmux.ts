@@ -355,8 +355,9 @@ export function createSurfaceSplit(
     if (fromSurface) {
       args.push("--match", `id:${fromSurface}`);
     }
+    // kitten @ launch outputs just the numeric window ID (e.g. "67")
     const windowId = execFileSync("kitten", args.slice(1), { encoding: "utf8" }).trim();
-    if (!windowId || !/^@\d+$/.test(windowId)) {
+    if (!windowId || !/^\d+$/.test(windowId)) {
       throw new Error(`Unexpected kitty launch output: ${windowId || "(empty)"}`);
     }
     try {
