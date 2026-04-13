@@ -17,7 +17,7 @@ import {
   seedSubagentSessionFile,
 } from "../pi-extension/subagents/session.ts";
 
-import { shellEscape, isCmuxAvailable, isWezTermAvailable } from "../pi-extension/subagents/cmux.ts";
+import { shellEscape, isCmuxAvailable, isWezTermAvailable, isKittyAvailable } from "../pi-extension/subagents/cmux.ts";
 import {
   shouldMarkUserTookOver,
   shouldAutoExitOnAgentEnd,
@@ -781,6 +781,13 @@ describe("cmux.ts", () => {
   describe("isWezTermAvailable", () => {
     it("returns boolean based on WEZTERM_UNIX_SOCKET", () => {
       const result = isWezTermAvailable();
+      assert.equal(typeof result, "boolean");
+    });
+  });
+
+  describe("isKittyAvailable", () => {
+    it("returns boolean based on KITTY_WINDOW_ID", () => {
+      const result = isKittyAvailable();
       assert.equal(typeof result, "boolean");
     });
   });
