@@ -361,9 +361,9 @@ export function createSurfaceSplit(
       throw new Error(`Unexpected kitty launch output: ${windowId || "(empty)"}`);
     }
     try {
-      execFileSync("kitten", ["@", "set-tab-title", name], { encoding: "utf8" });
+      execFileSync("kitten", ["@", "set-window-title", "--match", `id:${windowId}`, name], { encoding: "utf8" });
     } catch {
-      // Optional — tab title is cosmetic.
+      // Optional — window title is cosmetic.
     }
     return windowId;
   }
@@ -446,7 +446,7 @@ export function renameCurrentTab(title: string): void {
   }
 
   if (backend === "kitty") {
-    execFileSync("kitten", ["@", "set-tab-title", title], { encoding: "utf8" });
+    execFileSync("kitten", ["@", "set-window-title", title], { encoding: "utf8" });
     return;
   }
 
