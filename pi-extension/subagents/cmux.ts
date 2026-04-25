@@ -585,6 +585,13 @@ export function sendEscape(surface: string): void {
     return;
   }
 
+  if (backend === "kitty") {
+    execFileSync("kitten", ["@", "send-text", "--match", `id:${surface}`, "\u001b"], {
+      encoding: "utf8",
+    });
+    return;
+  }
+
   zellijActionSync(["write", "27"], surface);
 }
 
